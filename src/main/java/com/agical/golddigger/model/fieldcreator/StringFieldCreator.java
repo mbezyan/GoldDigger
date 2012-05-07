@@ -1,5 +1,8 @@
 package com.agical.golddigger.model.fieldcreator;
 
+import java.util.Enumeration;
+import java.util.Hashtable;
+
 import com.agical.golddigger.model.Square;
 
 public class StringFieldCreator extends FieldCreator {
@@ -31,6 +34,30 @@ public class StringFieldCreator extends FieldCreator {
         }
         return squares;
     }
+    
+    private String getTileShape() {
+    	String tileShape = null;
+    	String[] shapeSplit = null;
+    	Hashtable<Integer, String> shape = new Hashtable<Integer, String>();
+    	
+    	shape.put(3, "triangle");
+    	shape.put(4, "square");
+    	shape.put(6, "hexagon");
+    	
+    	String[] rows = result.split("\n");
+    	for (int rowCount = 0; rowCount < rows.length; rowCount++){
+    		shapeSplit = rows.toString().split("shape = ");
+    	}
+    	
+    	for (int i = 0; i < shapeSplit.length; i++){
+    		if (shape.containsKey(Integer.parseInt(shapeSplit[i]))){
+    			tileShape = shape.get(Integer.parseInt(shapeSplit[i]));
+    		}
+    	}
+    		
+    	return tileShape;
+    }
+
     
     public int getMaxLatitude() {
         return getSquares().length-WALLS;
