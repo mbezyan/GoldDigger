@@ -49,13 +49,39 @@ public class StringFieldCreator extends FieldCreator {
     		shapeSplit = rows.toString().split("shape = ");
     	}
     	
-    	for (int i = 0; i < shapeSplit.length; i++){
-    		if (shape.containsKey(Integer.parseInt(shapeSplit[i]))){
-    			tileShape = shape.get(Integer.parseInt(shapeSplit[i]));
+    	if (shapeSplit.length > 0){
+    		for (int i = 0; i < shapeSplit.length; i++){
+    			if (shape.containsKey(Integer.parseInt(shapeSplit[i]))){
+    				tileShape = shape.get(Integer.parseInt(shapeSplit[i]));
+    			}
+    		}
+    	} 
+    	else {
+    		tileShape = "square";
+    	}
+    	
+    	return tileShape;
+    }
+    
+    private int getLineOfSight(){
+    	int lineOfSight = 0;
+    	String[] sightSplit = null;
+    	
+    	String[] rows = result.split("\n");
+    	for (int rowCount = 0; rowCount < rows.length; rowCount++){
+    		sightSplit = rows.toString().split("line of sight = ");
+    	}
+    	
+    	if (sightSplit.length > 0){
+    		for (int i = 0; i < sightSplit.length; i++){
+    			lineOfSight = Integer.parseInt(sightSplit[i]);
     		}
     	}
-    		
-    	return tileShape;
+    	else {
+    		lineOfSight = 1;
+    	}
+    	
+		return lineOfSight;
     }
 
     
