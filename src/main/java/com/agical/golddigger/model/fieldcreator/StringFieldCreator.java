@@ -8,7 +8,7 @@ import com.agical.golddigger.model.Square;
 public class StringFieldCreator extends FieldCreator {
     
     private static final int WALLS = 2;
-    private final String result;
+    private static String result;
     private Square[][] squares;
 
     public StringFieldCreator(String result) {
@@ -63,8 +63,8 @@ public class StringFieldCreator extends FieldCreator {
     	return tileShape;
     }
     
-    private int getLineOfSight(){
-    	int lineOfSight = 0;
+    public static int getLineOfSight(){
+    	int lineOfSightLength = 0;
     	String[] sightSplit = null;
     	
     	String[] rows = result.split("\n");
@@ -74,14 +74,14 @@ public class StringFieldCreator extends FieldCreator {
     	
     	if (sightSplit.length > 0){
     		for (int i = 0; i < sightSplit.length; i++){
-    			lineOfSight = Integer.parseInt(sightSplit[i]);
+    			lineOfSightLength = Integer.parseInt(sightSplit[i]);
     		}
     	}
     	else {
-    		lineOfSight = 1;
+    		lineOfSightLength = 1;
     	}
     	
-		return lineOfSight;
+		return lineOfSightLength;
     }
 
     

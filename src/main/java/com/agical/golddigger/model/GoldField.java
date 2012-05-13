@@ -3,6 +3,7 @@ package com.agical.golddigger.model;
 import com.agical.golddigger.model.event.GolddiggerNotifier;
 import com.agical.golddigger.model.fieldcreator.EmptyFieldCreator;
 import com.agical.golddigger.model.fieldcreator.FieldCreator;
+import com.agical.golddigger.model.fieldcreator.StringFieldCreator;
 import com.agical.jambda.Option;
 import com.agical.jambda.Functions.Fn1;
 
@@ -52,7 +53,7 @@ public class GoldField {
         
     	String result = "";
         
-        Integer line_of_sight_length = 1;
+        Integer line_of_sight_length = StringFieldCreator.getLineOfSight();
         
         result = constructDiggerView(digger, line_of_sight_length);
         
@@ -66,13 +67,8 @@ public class GoldField {
     
     public String constructDiggerView(Digger digger, Integer length) {
     	
-    
-    	
-    	
     	String view = "";
-    	
-    	
-    	
+    		
 		int arraySizeLength = squares.length;
     	int arraySizeWidth = squares[0].length;
 		String[][] visibleTiles;
@@ -124,10 +120,6 @@ public class GoldField {
     		view += '\n';
     	}
     		
-    	
-    	
-    	    	
-    	
     	return view;
     	
     }
