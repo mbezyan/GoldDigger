@@ -74,7 +74,12 @@ public class StringFieldCreator extends FieldCreator {
     	
     	if (sightSplit.length > 0){
     		for (int i = 0; i < sightSplit.length; i++){
-    			lineOfSightLength = Integer.parseInt(sightSplit[i]);
+    			if (isInteger(sightSplit[i]) == true){
+    				lineOfSightLength = Integer.parseInt(sightSplit[i]);
+    			}
+    			else {
+    				lineOfSightLength = 1;
+    			}
     		}
     	}
     	else {
@@ -91,6 +96,16 @@ public class StringFieldCreator extends FieldCreator {
     
     public int getMaxLongitude() {
         return getSquares()[0].length-WALLS;
+    }
+    
+    public static boolean isInteger(String input){
+		try{
+			Integer.parseInt(input);
+			return true;
+		} 
+		catch(Exception e){
+			return false;
+		}
     }
     
 }
